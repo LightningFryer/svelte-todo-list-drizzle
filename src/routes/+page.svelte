@@ -8,7 +8,7 @@
     export const session = data.session;
     export const todos = data.todos;
     let navBarHeight;
-    // console.log(navBarHeight);
+
 </script>
 
 <body class="" data-theme="rocket">
@@ -44,27 +44,29 @@
                     <button class="btn variant-filled-primary rounded" on:click={() => goto("/create")}>Create a new Todo</button>
                 </div>
             {:else}
-                {#each todos ?? [] as todo}
-                    <form action="?/deleteTodo" method="post">
-                        <label for="todoId" class="hidden">{todo.id}</label>
-                        <div class={`h-full w-full mt-[${navBarHeight}px] p-8`}>
-                            <div class="grid grid-cols-4">
-                                <div class="card card-hover rounded">
-                                    <header class="card-header">
-                                        <h2 class="text-2xl font-semibold">{todo.title}</h2>
-                                    </header>
-                                    <section class="p-4">
-                                        <p>{todo.content}</p>
-                                    </section>
-                                    <footer class="card-footer text-end">
-                                        <button class="btn variant-filled-error rounded" type="submit">Done</button>
-                                    </footer>
-                                </div>
-                            </div>
-                        </div>    
-                    </form>
-                    
-                {/each}
+                <div class={` mt-[${navBarHeight}px] p-8 grid grid-cols-4 gap-6`}>
+                    <div class="card card-hover rounded justify-center items-center">
+                        <button class="h-full w-full btn variant-filled-secondary rounded text-xl font-bold" on:click={() => goto("/create")}>Create Todo</button>
+                    </div>
+                    {#each todos ?? [] as todo}
+                        <form action="?/deleteTodo" method="post">
+                            <input value="{todo.id}" name="todoId" class="hidden" />
+                                <div class="">
+                                    <div class="card card-hover rounded">
+                                        <header class="card-header">
+                                            <h2 class="text-2xl font-semibold">{todo.title}</h2>
+                                        </header>
+                                        <section class="p-4">
+                                            <p>{todo.content}</p>
+                                        </section>
+                                        <footer class="card-footer text-end">
+                                            <button class="btn variant-filled-error rounded" type="submit">Done</button>
+                                        </footer>
+                                    </div>
+                                </div> 
+                        </form>
+                    {/each}
+                </div>
             {/if}
         {/if}
     </main>

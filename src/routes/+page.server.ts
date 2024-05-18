@@ -13,7 +13,7 @@ export const load = (async (event) => {
     }
     else{
         const todos = await db.select().from(todoLists).where(eq(todoLists.userId, currentUserId));
-        console.log(todos);
+        // console.log(todos);
         return {todos};
     }
 }) satisfies PageServerLoad;
@@ -21,6 +21,8 @@ export const load = (async (event) => {
 export const actions = {
     deleteTodo: async (event) => {
         const formData = await event.request.formData();
-        // console.log(formData.get("todoId"))
+        const todoId = formData.get("todoId") as string;
+        await db.delete(todoLists).where(eq(todoLists.id, todoId));
+        console.log("Todo successfully deleted!");
     }
 } satisfies Actions
