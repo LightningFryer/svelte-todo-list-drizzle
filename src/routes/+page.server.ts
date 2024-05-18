@@ -2,6 +2,7 @@ import { db } from '../db';
 import { eq } from 'drizzle-orm';
 import { todoLists } from '../schema';
 import type { PageServerLoad } from './$types';
+import type { Actions } from '@sveltejs/kit';
 
 export const load = (async (event) => {
     const session = await event.locals.auth();
@@ -16,3 +17,10 @@ export const load = (async (event) => {
         return {todos};
     }
 }) satisfies PageServerLoad;
+
+export const actions = {
+    deleteTodo: async (event) => {
+        const formData = await event.request.formData();
+        // console.log(formData.get("todoId"))
+    }
+} satisfies Actions
