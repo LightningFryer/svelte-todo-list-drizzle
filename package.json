@@ -36,6 +36,7 @@
 		"@auth/drizzle-adapter": "^1.1.0",
 		"@auth/sveltekit": "^1.1.0",
 		"drizzle-orm": "^0.30.10",
-		"postgres": "^3.4.4"
+		"postgres": "^3.4.4",
+		"zod": "^3.23.8"
 	}
 }

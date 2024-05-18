@@ -70,6 +70,7 @@ import {
   
   export const todoLists = pgTable("todoList", {
     id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+    userId: text("userId"),
     title: text("title"),
     content: text("content"),
   })
