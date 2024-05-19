@@ -17,6 +17,4 @@ This fully featured todo list website includes the following features:
 - Create or Delete a todo
 - Todos are stored securely in a database (Using Supabase)
 - Secure and seamless authentication using Google OAuth (Using Auth.js)
-
-## Todo
-- Implement responsive design - Currently the website is only properly visible on larger screens. I'll have to work on making the website responsive for mobile viewports as well.
+- The website implements responsive design so that it can look pretty on both large and small screens.
