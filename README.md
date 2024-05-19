@@ -1,38 +1,22 @@
-# create-svelte
+# A simple Todo List
+This website was just a simple hobby project of mine to learn how to make a full stack website using the following stack:
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+### Frontend
+- Sveltekit
+- Tailwindcss
+- Skeleton UI Toolkit
+- Phosphor Icons
 
-## Creating a project
+### Backend
+- Supabase
+- Drizzle ORM
+- Auth.js for OAuth
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Features
+This fully featured todo list website includes the following features:
+- Create or Delete a todo
+- Todos are stored securely in a database (Using Supabase)
+- Secure and seamless authentication using Google OAuth (Using Auth.js)
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## Todo
+- Implement responsive design - Currently the website is only properly visible on larger screens. I'll have to work on making the website responsive for mobile viewports as well.
