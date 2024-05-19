@@ -1,18 +1,17 @@
 <script>
-
 	import { goto } from "$app/navigation";
     import {signIn, signOut} from "@auth/sveltekit/client"
     import { AppBar, Avatar } from "@skeletonlabs/skeleton"
+    import { Check } from "phosphor-svelte"
     
     export let data;
     export const session = data.session;
     export const todos = data.todos;
-    let navBarHeight;
 
 </script>
 
 <body class="" data-theme="rocket">
-    <nav class="absolute z-10 w-full min-h-fit" bind:clientHeight={navBarHeight}>
+    <nav class="absolute z-10 w-full min-h-fit">
         {#if session}
         <AppBar shadow="shadow-xl">
             <svelte:fragment slot="lead"><h1 class="text-3xl font-bold">Todo List</h1></svelte:fragment>
@@ -44,7 +43,7 @@
                     <button class="btn variant-filled-primary rounded" on:click={() => goto("/create")}>Create a new Todo</button>
                 </div>
             {:else}
-                <div class={` mt-[${navBarHeight}px] p-8 grid grid-cols-4 gap-6`}>
+                <div class={` mt-[80px] p-8 grid grid-cols-4 gap-6`}>
                     <div class="card card-hover rounded justify-center items-center">
                         <button class="h-full w-full btn variant-filled-secondary rounded text-xl font-bold" on:click={() => goto("/create")}>Create Todo</button>
                     </div>
@@ -60,7 +59,9 @@
                                             <p>{todo.content}</p>
                                         </section>
                                         <footer class="card-footer text-end">
-                                            <button class="btn variant-filled-error rounded" type="submit">Done</button>
+                                            <button class="btn-icon variant-filled-success rounded" type="submit">
+                                                <Check size={24}/>
+                                            </button>
                                         </footer>
                                     </div>
                                 </div> 
