@@ -38,13 +38,13 @@
     <main class="h-screen flex flex-col">
         {#if !session}
         <div class="h-full w-full flex flex-col justify-center items-center space-y-6">
-            <h1 class="text-5xl font-bold text-center">Login to start your todo list.</h1>
+            <h1 class="text-3xl lg:text-5xl font-bold text-center">Login to start your todo list.</h1>
             <button class="btn variant-filled-primary rounded" on:click={() => signIn("google", {callbackUrl: "/"})}>Login with Google</button>
         </div>
         {:else}
             {#if todos?.length == 0}
                 <div class="h-full w-full flex flex-col justify-center items-center space-y-6">
-                    <h1 class="text-5xl font-bold">You're all caught up!</h1>
+                    <h1 class="text-3xl lg:text-5xl font-bold text-center">You're all caught up!</h1>
                     <button class="btn variant-filled-primary rounded" on:click={() => goto("/create")}>Create a new Todo</button>
                 </div>
             {:else}
