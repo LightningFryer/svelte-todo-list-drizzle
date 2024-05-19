@@ -6,7 +6,7 @@
 
 <body data-theme="rocket">
     <main class="h-screen flex flex-col justify-center items-center">
-        <form action="?/createTodo" method="POST" class="h-[50%] w-[20%] flex flex-col justify-center p-7 bg-surface-800 rounded gap-4">
+        <form action="?/createTodo" method="POST" class="lg:h-[50%] lg:w-[20%] flex flex-col justify-center p-7 bg-surface-800 rounded gap-4">
             <h1 class="text-center text-2xl font-extrabold">Create a new Todo</h1>
             <div>
                 <label class="label" for="title">

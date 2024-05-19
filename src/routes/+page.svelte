@@ -38,7 +38,7 @@
     <main class="h-screen flex flex-col">
         {#if !session}
         <div class="h-full w-full flex flex-col justify-center items-center space-y-6">
-            <h1 class="text-5xl font-bold">Login to start your todo list.</h1>
+            <h1 class="text-5xl font-bold text-center">Login to start your todo list.</h1>
             <button class="btn variant-filled-primary rounded" on:click={() => signIn("google", {callbackUrl: "/"})}>Login with Google</button>
         </div>
         {:else}
@@ -48,7 +48,7 @@
                     <button class="btn variant-filled-primary rounded" on:click={() => goto("/create")}>Create a new Todo</button>
                 </div>
             {:else}
-                <div class={` mt-[80px] p-8 grid grid-cols-4 gap-6`}>
+                <div class={` mt-[80px] p-8 grid lg:grid-cols-4 gap-6`}>
                     <div class="card card-hover rounded justify-center items-center">
                         <button class="h-full w-full btn variant-filled-secondary rounded text-xl font-bold" on:click={() => goto("/create")}>Create Todo</button>
                     </div>
