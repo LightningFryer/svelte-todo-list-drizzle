@@ -1,6 +1,6 @@
 import { Lucia } from "lucia";
 import { dev } from "$app/environment";
-import { adapter } from "./db/adapter";
+import { adapter } from "../../db/adapter";
 import { Google } from "arctic";
 import { config } from "dotenv";
 
@@ -19,6 +19,7 @@ export const lucia = new Lucia(adapter, {
 			// attributes has the type of DatabaseUserAttributes
 			id: attributes.id,
 			username: attributes.username,
+			picture: attributes.picture,
 			account_type: attributes.account_type,
 			email: attributes.email,
 			ouauth_account_id: attributes.oauth_account_id,
@@ -36,6 +37,7 @@ declare module "lucia" {
 interface DatabaseUserAttributes {
 	id: string;
 	username: string;
+	picture: string;
 	account_type: string;
 	email: string;
 	oauth_account_id: string | undefined | null;

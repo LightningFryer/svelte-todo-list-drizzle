@@ -1,6 +1,6 @@
 import { OAuth2RequestError } from "arctic";
 import { generateIdFromEntropySize } from "lucia";
-import { google, lucia } from "../../../../auth"; 
+import { google, lucia } from "$lib/server/auth";
 import { db } from "../../../../db/drizzle";
 
 import type { RequestEvent } from "@sveltejs/kit";
@@ -48,6 +48,7 @@ export async function GET(event: RequestEvent): Promise<Response> {
             await db.insert(userTable).values({
 				id: userId,
 				username: googleUser.name,
+				picture: googleUser.picture,
 				email: googleUser.email,
 				account_type: "google",
 				oauth_account_id: googleUser.sub,
@@ -69,7 +70,7 @@ export async function GET(event: RequestEvent): Promise<Response> {
 		return new Response(null, {
 			status: 302,
 			headers: {
-				Location: "/"
+				Location: "/login"
 			}
 		});
 	} catch (e) {
