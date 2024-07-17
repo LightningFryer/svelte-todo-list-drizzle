@@ -4,16 +4,18 @@
     import { popupUserIconHover } from "$lib/popupSettings"
     import PopupUserIconHover from "$lib/components/PopupUserIconHover.svelte"
 	import { enhance } from "$app/forms";
+	import { goto } from "$app/navigation";
     
     export let data;
-    export const user = data.user;
-    export const session = data.session;
-    // export const todos = data.todos;
+    const user = data.user;
+    const session = data.session;
+    const todos = data.todos;
+    console.log(todos.length);
 
 </script>
 					
 <PopupUserIconHover userName={user?.username}/>
-<body class="" data-theme="rocket">
+<body class="flex flex-col" data-theme="rocket">
     <nav class="absolute z-10 w-full min-h-fit">
         {#if session}
         <AppBar shadow="shadow-xl">
@@ -44,7 +46,7 @@
             <a class="btn variant-filled-primary rounded" href="/login">Login with Google</a>
         </div>
         {:else}
-            <!-- {#if todos?.length == 0}
+            {#if todos?.length == 0}
                 <div class="h-full w-full flex flex-col justify-center items-center space-y-6">
                     <h1 class="text-3xl lg:text-5xl font-bold text-center">You're all caught up!</h1>
                     <button class="btn variant-filled-primary rounded" on:click={() => goto("/create")}>Create a new Todo</button>
@@ -63,7 +65,7 @@
                                             <h2 class="text-2xl font-semibold">{todo.title}</h2>
                                         </header>
                                         <section class="p-4">
-                                            <p>{todo.content}</p>
+                                            <p>{todo.description}</p>
                                         </section>
                                         <footer class="card-footer text-end">
                                             <button class="btn-icon variant-filled-success rounded" type="submit">
@@ -75,10 +77,7 @@
                         </form>
                     {/each}
                 </div>
-            {/if} -->
-            <div>
-                Under construction
-            </div>
+            {/if}
         {/if}
     </main>
 </body>
