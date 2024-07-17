@@ -9,12 +9,18 @@ export const load = (async (event) => {
     const user = event.locals.user
 	const userId = user?.id as string;
     const session = event.locals.session;
-	const todos = await db.query.todo_table.findMany({
-		where: eq(todo_table.userId, userId)
-	})
-    return {
-        user, session, todos
-    };
+	if (session) {
+		const todos = await db.query.todo_table.findMany({
+			where: eq(todo_table.userId, userId)
+		})
+
+		return {
+			user, session, todos
+		};
+	}
+	return {
+		user, session 
+	}
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {

@@ -9,8 +9,7 @@
     export let data;
     const user = data.user;
     const session = data.session;
-    const todos = data.todos;
-    console.log(todos.length);
+    const todos = data?.todos;
 
 </script>
 					
