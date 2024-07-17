@@ -23,7 +23,7 @@
                 <div use:popup={popupUserIconHover}>
                     <Avatar src={`${user?.picture}`} alt="user_img" width="max-w-12" />
                 </div>
-                <form use:enhance action="?/logout" method="post">
+                <form action="?/logout" method="post">
                     <button class="btn variant-filled-primary rounded" type="submit">Logout</button>
                  </form>
             </svelte:fragment>
