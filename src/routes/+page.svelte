@@ -1,35 +1,38 @@
 <script>
-	import { goto } from "$app/navigation";
-    import {signIn, signOut} from "@auth/sveltekit/client"
     import { AppBar, Avatar, popup } from "@skeletonlabs/skeleton"
-    import { Check } from "phosphor-svelte"
+    import { Check } from "lucide-svelte"
     import { popupUserIconHover } from "$lib/popupSettings"
     import PopupUserIconHover from "$lib/components/PopupUserIconHover.svelte"
+	import { enhance } from "$app/forms";
+	import { goto } from "$app/navigation";
     
     export let data;
-    export const session = data.session;
-    export const todos = data.todos;
+    const user = data.user;
+    const session = data.session;
+    const todos = data?.todos;
 
 </script>
 					
-<PopupUserIconHover userName={session?.user?.name}/>
-<body class="" data-theme="rocket">
+<PopupUserIconHover userName={user?.username}/>
+<body class="flex flex-col" data-theme="rocket">
     <nav class="absolute z-10 w-full min-h-fit">
         {#if session}
         <AppBar shadow="shadow-xl">
             <svelte:fragment slot="lead"><h1 class="text-3xl font-bold">Todo List</h1></svelte:fragment>
             <svelte:fragment slot="trail">
                 <div use:popup={popupUserIconHover}>
-                    <Avatar src={`${session.user?.image}`} alt="user_img" width="max-w-12" />
+                    <Avatar src={`${user?.picture}`} alt="user_img" width="max-w-12" />
                 </div>
-                <button class="btn variant-filled-primary rounded" on:click={() => signOut()}>Logout</button>
+                <form action="?/logout" method="post">
+                    <button class="btn variant-filled-primary rounded" type="submit">Logout</button>
+                 </form>
             </svelte:fragment>
         </AppBar>
         {:else}
         <AppBar shadow="shadow-xl">
             <svelte:fragment slot="lead"><h1 class="text-2xl font-semibold">Todo List</h1></svelte:fragment>
             <svelte:fragment slot="trail">
-                <button class="btn variant-filled-primary rounded" on:click={() => signIn("google", {callbackUrl: "/"})}>Login</button>
+                <a class="btn variant-filled-primary rounded" href="/login/google">Login</a>
             </svelte:fragment>
         </AppBar>
         {/if}
@@ -39,7 +42,7 @@
         {#if !session}
         <div class="h-full w-full flex flex-col justify-center items-center space-y-6">
             <h1 class="text-3xl lg:text-5xl font-bold text-center">Login to start your todo list.</h1>
-            <button class="btn variant-filled-primary rounded" on:click={() => signIn("google", {callbackUrl: "/"})}>Login with Google</button>
+            <a class="btn variant-filled-primary rounded" href="/login/google">Login with Google</a>
         </div>
         {:else}
             {#if todos?.length == 0}
@@ -61,7 +64,7 @@
                                             <h2 class="text-2xl font-semibold">{todo.title}</h2>
                                         </header>
                                         <section class="p-4">
-                                            <p>{todo.content}</p>
+                                            <p>{todo.description}</p>
                                         </section>
                                         <footer class="card-footer text-end">
                                             <button class="btn-icon variant-filled-success rounded" type="submit">

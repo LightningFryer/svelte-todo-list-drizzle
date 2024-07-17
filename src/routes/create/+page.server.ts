@@ -1,17 +1,19 @@
 import { redirect, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { newTodoSchema } from '../../zodSchema';
-import { db } from "../../db"
-import { todoLists } from '../../schema';
+import { db } from "../../db/drizzle"
+import { todo_table } from '../../db/schema';
+import { generateIdFromEntropySize } from 'lucia';
 
 export const load = (async (event) => {
-    const session = await event.locals.auth();
+    const user = await event.locals.user;
+    const session = await event.locals.session;
+
     if (!session){
         redirect(301, "/");
     }
     else{
         // const todoForm = await superValidate(zod(newTodoSchema));
-        return {session};
+        return { user, session };
     }
     
 }) satisfies PageServerLoad;
@@ -19,15 +21,15 @@ export const load = (async (event) => {
 export const actions: Actions = {
     createTodo: async (event) => {
         const formData = await event.request.formData();
-        const session = await event.locals.auth();
-        const userId = session?.user?.id;
+        const userId = event.locals.user?.id;
         const title = formData.get("title") as string;
         const content = formData.get("content") as string;
 
         const data = {
-            title: title,
-            content: content,
+            id: generateIdFromEntropySize(10),
             userId: userId,
+            title: title,
+            description: content,
         }
 
         if (!title || !content){
@@ -35,7 +37,7 @@ export const actions: Actions = {
             redirect(301, "/");
         }
         else{
-            await db.insert(todoLists).values(data);
+            await db.insert(todo_table).values(data);
             console.log("Successfully inserted a row");
             redirect(301, "/");
         }
