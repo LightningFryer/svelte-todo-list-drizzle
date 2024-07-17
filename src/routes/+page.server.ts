@@ -35,5 +35,12 @@ export const actions: Actions = {
 			...sessionCookie.attributes
 		});
 		redirect(302, "/login");
-    }
+    },
+
+	deleteTodo: async (event) => {
+		const formData = await event.request.formData();
+		const todoId = formData.get("todoId") as string;
+		await db.delete(todo_table).where(eq(todo_table.id, todoId));
+		return redirect(302, "/");
+	}
 };

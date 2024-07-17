@@ -32,7 +32,7 @@
         <AppBar shadow="shadow-xl">
             <svelte:fragment slot="lead"><h1 class="text-2xl font-semibold">Todo List</h1></svelte:fragment>
             <svelte:fragment slot="trail">
-                <a class="btn variant-filled-primary rounded" href="/login">Login</a>
+                <a class="btn variant-filled-primary rounded" href="/login/google">Login</a>
             </svelte:fragment>
         </AppBar>
         {/if}
@@ -42,7 +42,7 @@
         {#if !session}
         <div class="h-full w-full flex flex-col justify-center items-center space-y-6">
             <h1 class="text-3xl lg:text-5xl font-bold text-center">Login to start your todo list.</h1>
-            <a class="btn variant-filled-primary rounded" href="/login">Login with Google</a>
+            <a class="btn variant-filled-primary rounded" href="/login/google">Login with Google</a>
         </div>
         {:else}
             {#if todos?.length == 0}
