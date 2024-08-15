@@ -1,8 +1,5 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-
-    export let data;
-    const session = data.session;
 </script>
 
 <body data-theme="rocket">
