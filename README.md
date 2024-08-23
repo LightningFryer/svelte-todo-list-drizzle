@@ -6,6 +6,7 @@ This project is a simple todo list which uses Google's OAuth to keep track of yo
 - [SvelteKit](https://kit.svelte.dev/)
 - [Tailwindcss](https://kit.svelte.dev/)
 - [Skeleton UI library](https://www.skeleton.dev/)
+- [lucia-auth](https://lucia-auth.com/) (For authentication)
 - [Drizzle ORM*](https://orm.drizzle.team/)
 - [TursoDB](https://turso.tech/)
 
